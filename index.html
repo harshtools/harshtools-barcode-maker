@@ -608,7 +608,7 @@ async function loadFromGoogleSheet() {
   const statusEl = document.getElementById('emptyMsg');
   if (statusEl) statusEl.innerHTML = '⏳ Loading data from Google Sheet...';
   try {
-    const res = await fetch(SHEET_CSV_URL);
+    const res = await fetch(SHEET_CSV_URL + '&t=' + Date.now(), { cache: 'no-store' });
     const text = await res.text();
     const lines = text.trim().split('\n');
     // skip header row
