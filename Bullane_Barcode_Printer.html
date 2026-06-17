@@ -410,7 +410,7 @@ tbody td:first-child { padding-left: 20px; }
     <input class="search-input" id="searchInput" type="text" placeholder="Search SKU or label…" autocomplete="off">
   </div>
 
-  <!-- Refresh from Google Sheet -->
+  <!-- Refresh Data -->
   <button class="btn btn-import" onclick="loadFromGoogleSheet()">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
     Refresh Data
@@ -617,7 +617,6 @@ function confirmImport() {
 
 <script>
 const DATA = [];
-
 const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-pw5vDIpLUAoEZLDoh-Q-9VIuc6Pwj8Anys2TxQ83RsAly3MPaHV8u-fw2PZoj1J-ZUg_a7lxuquh/pub?gid=1604168852&single=true&output=csv';
 
 async function loadFromGoogleSheet() {
@@ -658,6 +657,7 @@ async function loadFromGoogleSheet() {
     if (statusEl) statusEl.innerHTML = '❌ Failed to load data. Please check your internet connection.';
   }
 }
+
 
 const PAGE_SIZE = 20;
 const rowQty = new Map(); // stores qty per data index
@@ -1200,7 +1200,7 @@ function setTheme(t) {
 // restore saved theme
 (function(){ const t = localStorage.getItem('bullane_theme'); if(t) setTheme(t); })();
 
-// ── AUTO LOAD FROM GOOGLE SHEET ──
+// ── AUTO LOAD FROM GOOGLE SHEET ON EVERY OPEN ──
 loadFromGoogleSheet();
 
 // init
