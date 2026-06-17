@@ -407,10 +407,10 @@ tbody td:first-child { padding-left: 20px; }
     <input class="search-input" id="searchInput" type="text" placeholder="Search SKU or label…" autocomplete="off">
   </div>
 
-  <!-- Import Excel -->
-  <button class="btn btn-import" onclick="openImportModal()">
-    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-    Import Excel
+  <!-- Refresh from Google Sheet -->
+  <button class="btn btn-import" onclick="loadFromGoogleSheet()">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+    Refresh Data
   </button>
 
   <!-- Select All -->
@@ -614,6 +614,47 @@ function confirmImport() {
 
 <script>
 const DATA = [];
+
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-pw5vDIpLUAoEZLDoh-Q-9VIuc6Pwj8Anys2TxQ83RsAly3MPaHV8u-fw2PZoj1J-ZUg_a7lxuquh/pub?output=csv';
+
+async function loadFromGoogleSheet() {
+  const statusEl = document.getElementById('emptyMsg');
+  if (statusEl) statusEl.innerHTML = '⏳ Loading data from Google Sheet...';
+  try {
+    const res = await fetch(SHEET_CSV_URL + '&t=' + Date.now(), { cache: 'no-store' });
+    const text = await res.text();
+    const lines = text.trim().split('\n');
+    const newData = [];
+    for (let i = 1; i < lines.length; i++) {
+      const cols = lines[i].split(',');
+      const sku = (cols[0] || '').replace(/^"|"$/g, '').trim();
+      const label = (cols[1] || '').replace(/^"|"$/g, '').trim();
+      if (sku && label) {
+        newData.push({ 'SKU': sku, 'Barcode Lable': label });
+      }
+    }
+    if (newData.length > 0) {
+      DATA.splice(0, DATA.length, ...newData);
+      DATA.sort((a, b) => {
+        const baseA = getBaseKey(a['SKU']);
+        const baseB = getBaseKey(b['SKU']);
+        if (baseA < baseB) return -1;
+        if (baseA > baseB) return 1;
+        return getSizeRank(a['SKU']) - getSizeRank(b['SKU']);
+      });
+      filtered = [...DATA];
+      currentPage = 1;
+      document.getElementById('headerCount').textContent = DATA.length;
+      document.getElementById('totalCount').textContent = DATA.length;
+      render();
+    } else {
+      if (statusEl) statusEl.innerHTML = '⚠️ No data found in Google Sheet.';
+    }
+  } catch(e) {
+    console.error('Failed to load Google Sheet:', e);
+    if (statusEl) statusEl.innerHTML = '❌ Failed to load data. Please check your internet connection.';
+  }
+}
 
 const PAGE_SIZE = 20;
 const rowQty = new Map(); // stores qty per data index
@@ -1156,21 +1197,8 @@ function setTheme(t) {
 // restore saved theme
 (function(){ const t = localStorage.getItem('bullane_theme'); if(t) setTheme(t); })();
 
-// ── LOAD SAVED DATA FROM LAST SESSION ──
-(function() {
-  try {
-    const saved = localStorage.getItem('bullane_barcode_data');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        DATA.splice(0, DATA.length, ...parsed);
-        filtered = [...DATA];
-        document.getElementById('headerCount').textContent = DATA.length;
-        document.getElementById('totalCount').textContent = DATA.length;
-      }
-    }
-  } catch(e) { console.warn('Storage load failed:', e); }
-})();
+// ── AUTO LOAD FROM GOOGLE SHEET ──
+loadFromGoogleSheet();
 
 // init
 render();
