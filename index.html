@@ -419,6 +419,8 @@ body:not(.light) .sku-cell { color: #e0e8ff; }
     Download PDF
   </button>
 
+
+
   <div class="stats">
     <span>Showing <span class="count" id="showCount">0</span> of <span class="count" id="totalCount">0</span></span>
     <span>Selected: <span class="count" id="selCount">0</span></span>
@@ -1034,7 +1036,7 @@ window.onload = async function() {
     } catch(e) {}
   });
 
-  await new Promise(r => setTimeout(r, 400));
+  await new Promise(r => setTimeout(r, 1200));
 
   // Step 2: use jsPDF to create PDF
   const { jsPDF } = window.jspdf;
@@ -1121,7 +1123,7 @@ window.onload = async function() {
   document.querySelector('.msg').textContent = '✅ Download started!';
   document.querySelector('.sub').textContent = count + ' label(s) saved to your Downloads folder.';
   document.querySelector('.progress').style.display = 'none';
-  setTimeout(function(){ window.close(); }, 2000);
+  // Window stays open — user can close manually
 };
 <\/script>
 </body>
