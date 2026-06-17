@@ -13,18 +13,18 @@
   --bg2: #141720;
   --surface: #1a1f2e;
   --surface2: #1f2538;
-  --border: #2a3048;
-  --border2: #333c58;
-  --text: #dce2f0;
-  --text2: #8e9ab8;
-  --text3: #505870;
-  --accent: #50586c;
-  --accent2: #6e7a96;
-  --accentdim: #1e2338;
+  --border: #3a4560;
+  --border2: #4a5570;
+  --text: #ffffff;
+  --text2: #c8d4f0;
+  --text3: #8898c0;
+  --accent: #6070a0;
+  --accent2: #7888b8;
+  --accentdim: #1e2845;
   --green: #6e8ab0;
-  --greendim: #111a28;
-  --orange: #8090b8;
-  --red: #c05060;
+  --greendim: #182040;
+  --orange: #a0b4e0;
+  --red: #e06070;
   --label-w: 380px;
   --label-h: 200px;
   --header-bg: #090c14;
@@ -99,9 +99,9 @@ header {
   display: flex; align-items: center; gap: 7px;
   background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
   padding: 5px 12px; border-radius: 20px;
-  font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.5);
+  font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.6);
 }
-.hpill strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+.hpill strong { color: rgba(255,255,255,0.95); font-weight: 600; }
 .hpill .dot { width: 6px; height: 6px; border-radius: 50%; background: #8090b8; box-shadow: 0 0 6px #8090b8; }
 
 /* Theme toggle */
@@ -152,9 +152,9 @@ header {
   font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600;
   cursor: pointer; white-space: nowrap; transition: all .18s;
 }
-.btn-import { background: var(--surface2); color: var(--text2); border: 1.5px solid var(--border2); }
+.btn-import { background: var(--surface2); color: var(--text); border: 1.5px solid var(--border2); }
 .btn-import:hover { border-color: var(--accent); color: var(--accent); background: var(--accentdim); }
-.btn-select { background: var(--surface2); color: var(--text2); border: 1.5px solid var(--border2); }
+.btn-select { background: var(--surface2); color: var(--text); border: 1.5px solid var(--border2); }
 .btn-select:hover { border-color: var(--accent); color: var(--accent); }
 .btn-select.active-all { border-color: var(--accent); color: var(--accent); background: var(--accentdim); }
 .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 0 18px rgba(80,88,108,0.45); }
@@ -192,7 +192,7 @@ header {
   font-size: 11px; color: var(--text3);
   display: flex; align-items: center; gap: 14px;
 }
-.stats .count { font-weight: 500; color: var(--text2); }
+.stats .count { font-weight: 600; color: var(--text); }
 
 /* SEL BAR */
 .sel-bar {
@@ -204,7 +204,7 @@ header {
 }
 .sel-bar.visible { display: flex; }
 @keyframes slideDown { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:none} }
-.sel-bar-text { font-size: 12px; font-weight: 600; color: var(--accent2); }
+.sel-bar-text { font-size: 12px; font-weight: 600; color: var(--text); }
 .sel-clear { font-size: 11px; color: var(--text3); cursor: pointer; margin-left: auto; }
 .sel-clear:hover { color: var(--red); }
 
@@ -222,7 +222,7 @@ thead tr { background: var(--header-bg); }
 thead th {
   padding: 12px 16px; text-align: left;
   font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: rgba(255,255,255,0.5);
+  text-transform: uppercase; color: rgba(255,255,255,0.7);
   border-bottom: 1px solid var(--border2);
 }
 thead th:first-child { padding-left: 20px; width: 44px; }
@@ -230,21 +230,21 @@ tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
 tbody tr:last-child { border-bottom: none; }
 tbody tr:hover { background: var(--surface2); }
 tbody tr.selected { background: var(--accentdim); }
-tbody td { padding: 11px 16px; font-size: 13px; }
+tbody td { padding: 11px 16px; font-size: 13px; color: var(--text); }
 tbody td:first-child { padding-left: 20px; }
 
-.sku-cell { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text2); }
+.sku-cell { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text); }
 .label-cell {
   display: inline-block; font-family: 'DM Mono', monospace;
   font-size: 12px; font-weight: 600;
   background: var(--surface2); border: 1px solid var(--border2);
-  padding: 3px 10px; border-radius: 6px; color: var(--accent2);
+  padding: 3px 10px; border-radius: 6px; color: var(--text);
 }
 .chk { width: 15px; height: 15px; cursor: pointer; accent-color: var(--accent); }
 .preview-btn {
   padding: 5px 12px; border: 1.5px solid var(--border2); border-radius: 7px;
   background: transparent; font-size: 11px; font-family: 'Syne', sans-serif;
-  font-weight: 600; cursor: pointer; color: var(--text3); transition: all .15s;
+  font-weight: 600; cursor: pointer; color: var(--text); transition: all .15s;
 }
 .preview-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accentdim); }
 
@@ -256,7 +256,7 @@ tbody td:first-child { padding-left: 20px; }
 .pg-btn {
   padding: 7px 13px; border-radius: 8px; border: 1.5px solid var(--border);
   background: var(--surface); font-size: 12px; font-family: 'DM Mono', monospace;
-  cursor: pointer; color: var(--text3); transition: all .15s;
+  cursor: pointer; color: var(--text); transition: all .15s;
 }
 .pg-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accentdim); }
 .pg-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 0 14px rgba(80,88,108,0.5); }
@@ -283,14 +283,14 @@ tbody td:first-child { padding-left: 20px; }
 .import-modal { max-width: 460px; }
 .modal-overlay.open .modal, .import-modal-overlay.open .import-modal { transform: none; }
 .modal h2, .import-modal h2 { font-size: 17px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
-.modal .modal-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text3); margin-bottom: 20px; }
-.import-modal p { font-size: 12px; color: var(--text2); margin-bottom: 18px; line-height: 1.6; }
+.modal .modal-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text2); margin-bottom: 20px; }
+.import-modal p { font-size: 12px; color: var(--text); margin-bottom: 18px; line-height: 1.6; }
 .modal-close {
   position: absolute; top: 14px; right: 16px;
   background: var(--surface2); border: 1px solid var(--border);
   border-radius: 8px; width: 28px; height: 28px;
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--text3); font-size: 14px; transition: all .15s;
+  cursor: pointer; color: var(--text); font-size: 14px; transition: all .15s;
 }
 .modal-close:hover { background: rgba(239,68,68,0.15); border-color: var(--red); color: var(--red); }
 
@@ -322,11 +322,11 @@ tbody td:first-child { padding-left: 20px; }
 .import-result {
   background: var(--bg); border-radius: 8px; padding: 12px 14px;
   margin-bottom: 14px; font-family: 'DM Mono', monospace; font-size: 12px;
-  color: var(--text2); display: none; border-left: 3px solid var(--accent);
+  color: var(--text); display: none; border-left: 3px solid var(--accent);
 }
 .import-result.visible { display: block; }
 .import-actions { display: flex; gap: 8px; justify-content: flex-end; }
-.btn-cancel { background: var(--surface2); border: 1.5px solid var(--border2); color: var(--text2); }
+.btn-cancel { background: var(--surface2); border: 1.5px solid var(--border2); color: var(--text); }
 .btn-cancel:hover { border-color: var(--red); color: var(--red); }
 .btn-confirm { background: var(--accent); color: #fff; box-shadow: 0 0 14px rgba(80,88,108,0.4); }
 .btn-confirm:hover { background: var(--accent2); }
@@ -339,7 +339,7 @@ tbody td:first-child { padding-left: 20px; }
   }
   .row-qty-btn {
     width: 26px; height: 28px; background: none; border: none;
-    color: var(--text2); font-size: 15px; cursor: pointer;
+    color: var(--text); font-size: 15px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: all .15s; flex-shrink: 0;
   }
@@ -359,6 +359,9 @@ tbody td:first-child { padding-left: 20px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* ── ROW NUMBER ── */
+.row-num { color: var(--text3); font-family: 'DM Mono', monospace; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -382,31 +385,26 @@ tbody td:first-child { padding-left: 20px; }
 </header>
 
 <div class="toolbar">
-  <!-- Search -->
   <div class="search-wrap">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input class="search-input" id="searchInput" type="text" placeholder="Search SKU or label…" autocomplete="off">
   </div>
 
-  <!-- Refresh from Google Sheet -->
   <button class="btn btn-import" onclick="loadFromGoogleSheet()">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
     Refresh Data
   </button>
 
-  <!-- Select All -->
   <button class="btn btn-outline" id="selectAllBtn" onclick="handleSelectAllBtn()">
     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
     <span id="selectAllLabel">Select All</span>
   </button>
 
-  <!-- Print -->
   <button class="btn btn-primary" onclick="printSelected()">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
     Print Selected
   </button>
 
-  <!-- Download -->
   <button class="btn btn-outline" onclick="downloadSelected()">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     Download PDF
@@ -418,10 +416,9 @@ tbody td:first-child { padding-left: 20px; }
   </div>
 </div>
 
-<!-- TABLE -->
 <div class="sel-bar" id="selBar">
   <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-  <div class="sel-bar-text"><span id="selCount">0</span> items selected — ready to print or download</div>
+  <div class="sel-bar-text"><span id="selBarCount">0</span> items selected — ready to print or download</div>
   <span class="sel-clear" onclick="clearAll()">✕ Clear</span>
 </div>
 
@@ -441,13 +438,13 @@ tbody td:first-child { padding-left: 20px; }
   </table>
   <div class="empty" id="emptyState" style="display:none;">
     <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-    <div id="emptyMsg">No data loaded — click <strong>Import Excel</strong> to get started</div>
+    <div id="emptyMsg">⏳ Loading data from Google Sheet...</div>
   </div>
 </div>
 
 <div class="pagination" id="pagination"></div>
 
-<!-- MODAL -->
+<!-- PREVIEW MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
@@ -463,142 +460,9 @@ tbody td:first-child { padding-left: 20px; }
   </div>
 </div>
 
-<!-- PRINT SECTION (hidden from screen) -->
 <div id="printSection" style="display:none;"></div>
 
-<!-- IMPORT MODAL -->
-<div class="import-modal-overlay" id="importModalOverlay" onclick="closeImportModal(event)">
-  <div class="import-modal">
-    <button class="modal-close" onclick="closeImportModal()" style="position:absolute;top:16px;right:18px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink2);">×</button>
-    <h2>📥 Import Excel File</h2>
-    <p>Upload an Excel (.xlsx) file with <strong>Column A = SKU</strong> and <strong>Column B = Barcode Label</strong>. <strong style="color:#f87171;">⚠️ The current list will be fully replaced</strong> with the new file.</p>
-
-    <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-      <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-      <div class="dz-title">Click to browse or drag & drop</div>
-      <div class="dz-sub">Supports .xlsx and .xls files</div>
-      <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFileSelect(event)">
-    </div>
-
-    <div class="import-result" id="importResult"></div>
-
-    <div class="import-actions">
-      <button class="btn btn-outline" onclick="closeImportModal()">Cancel</button>
-      <button class="btn btn-primary" id="importConfirmBtn" onclick="confirmImport()" style="display:none;">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        Replace List
-      </button>
-    </div>
-  </div>
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script>
-// ── IMPORT EXCEL ──
-let pendingImport = [];
-
-function openImportModal() {
-  pendingImport = [];
-  document.getElementById('importResult').className = 'import-result';
-  document.getElementById('importResult').textContent = '';
-  document.getElementById('importConfirmBtn').style.display = 'none';
-  document.getElementById('fileInput').value = '';
-  document.getElementById('importModalOverlay').classList.add('open');
-}
-
-function closeImportModal(e) {
-  if (!e || e.target === document.getElementById('importModalOverlay')) {
-    document.getElementById('importModalOverlay').classList.remove('open');
-  }
-}
-
-function onDragOver(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('drag-over'); }
-function onDragLeave(e) { document.getElementById('dropZone').classList.remove('drag-over'); }
-function onDrop(e) {
-  e.preventDefault();
-  document.getElementById('dropZone').classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (file) processFile(file);
-}
-
-function handleFileSelect(e) {
-  const file = e.target.files[0];
-  if (file) processFile(file);
-}
-
-function processFile(file) {
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const wb = XLSX.read(e.target.result, { type: 'array' });
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
-
-      // Detect if first row is header
-      let startRow = 0;
-      const firstA = String(rows[0]?.[0] || '').toLowerCase();
-      if (firstA === 'sku' || firstA === 'skus') startRow = 1;
-
-      pendingImport = [];
-
-      for (let i = startRow; i < rows.length; i++) {
-        const sku = String(rows[i][0] || '').trim();
-        const label = String(rows[i][1] || '').trim();
-        if (!sku || !label) continue;
-        pendingImport.push({ 'SKU': sku, 'Barcode Lable': label });
-      }
-
-      const resultEl = document.getElementById('importResult');
-      resultEl.classList.add('visible');
-      if (pendingImport.length === 0) {
-        resultEl.textContent = `⚠️ No valid rows found. Check your file format.`;
-        document.getElementById('importConfirmBtn').style.display = 'none';
-      } else {
-        resultEl.textContent = `✅ Found ${pendingImport.length} item(s) ready. Click "Replace List" — old data will be removed.`;
-        document.getElementById('importConfirmBtn').style.display = 'inline-flex';
-      }
-    } catch(err) {
-      const resultEl = document.getElementById('importResult');
-      resultEl.classList.add('visible');
-      resultEl.textContent = '❌ Could not read file. Please make sure it is a valid .xlsx file.';
-      document.getElementById('importConfirmBtn').style.display = 'none';
-    }
-  };
-  reader.readAsArrayBuffer(file);
-}
-
-function confirmImport() {
-  if (pendingImport.length === 0) return;
-
-  // Fully replace old data with new
-  DATA.splice(0, DATA.length, ...pendingImport);
-
-  DATA.sort((a, b) => {
-    const baseA = getBaseKey(a['SKU']);
-    const baseB = getBaseKey(b['SKU']);
-    if (baseA < baseB) return -1;
-    if (baseA > baseB) return 1;
-    return getSizeRank(a['SKU']) - getSizeRank(b['SKU']);
-  });
-  filtered = [...DATA];
-  currentPage = 1;
-  selected.clear();
-
-  // ── Save to localStorage so it persists on next open ──
-  try {
-    localStorage.setItem('je_barcode_data', JSON.stringify(DATA));
-  } catch(e) { console.warn('Storage save failed:', e); }
-
-  // Update all counters
-  document.getElementById('headerCount').textContent = DATA.length;
-  document.getElementById('totalCount').textContent = DATA.length;
-  document.getElementById('selCount').textContent = 0;
-  render();
-  closeImportModal();
-  pendingImport = [];
-}
-</script>
-
 <script>
 const DATA = [];
 
@@ -611,7 +475,6 @@ async function loadFromGoogleSheet() {
     const res = await fetch(SHEET_CSV_URL + '&t=' + Date.now(), { cache: 'no-store' });
     const text = await res.text();
     const lines = text.trim().split('\n');
-    // skip header row
     const newData = [];
     for (let i = 1; i < lines.length; i++) {
       const cols = lines[i].split(',');
@@ -635,6 +498,8 @@ async function loadFromGoogleSheet() {
       document.getElementById('headerCount').textContent = DATA.length;
       document.getElementById('totalCount').textContent = DATA.length;
       render();
+    } else {
+      if (statusEl) statusEl.innerHTML = '⚠️ No data found in Google Sheet.';
     }
   } catch(e) {
     console.error('Failed to load Google Sheet:', e);
@@ -643,9 +508,8 @@ async function loadFromGoogleSheet() {
 }
 
 const PAGE_SIZE = 20;
-const rowQty = new Map(); // stores qty per data index
+const rowQty = new Map();
 
-// ── SIZE SORT: S → M → L → XL ──
 const SIZE_ORDER = { 'S': 0, 'M': 1, 'L': 2, 'XL': 3 };
 function getSizeRank(sku) {
   const m = sku.match(/-(S|M|L|XL)$/i);
@@ -655,30 +519,18 @@ function getSizeRank(sku) {
 function getBaseKey(sku) {
   return sku.replace(/-(S|M|L|XL)$/i, '');
 }
-DATA.sort((a, b) => {
-  const baseA = getBaseKey(a['SKU']);
-  const baseB = getBaseKey(b['SKU']);
-  if (baseA < baseB) return -1;
-  if (baseA > baseB) return 1;
-  return getSizeRank(a['SKU']) - getSizeRank(b['SKU']);
-});
 
 let filtered = [...DATA];
 let currentPage = 1;
 let selected = new Set();
 
-// ── BARCODE HELPER ──
 function makeBarcodeSVG(text, width=340, height=120) {
   const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
   try {
     JsBarcode(svg, text, {
-      format: 'CODE128',
-      width: 2.8,
-      height: height,
-      displayValue: false,
-      margin: 0,
-      background: '#ffffff',
-      lineColor: '#000000'
+      format: 'CODE128', width: 2.8, height: height,
+      displayValue: false, margin: 0,
+      background: '#ffffff', lineColor: '#000000'
     });
     svg.setAttribute('width', width);
     svg.setAttribute('height', height);
@@ -686,18 +538,22 @@ function makeBarcodeSVG(text, width=340, height=120) {
   return svg;
 }
 
-// ── RENDER TABLE ──
 function render() {
   const tbody = document.getElementById('tableBody');
   const start = (currentPage-1)*PAGE_SIZE;
   const page = filtered.slice(start, start+PAGE_SIZE);
-  
+
   document.getElementById('showCount').textContent = filtered.length;
   document.getElementById('selCount').textContent = selected.size;
+  document.getElementById('selBarCount').textContent = selected.size;
+  document.getElementById('headerSel').textContent = selected.size;
   document.getElementById('emptyState').style.display = filtered.length ? 'none' : 'block';
   document.getElementById('mainTable').style.display = filtered.length ? '' : 'none';
+
   const emptyMsg = document.getElementById('emptyMsg');
-  if (emptyMsg) emptyMsg.innerHTML = DATA.length === 0 ? 'No data loaded — click <strong>Import Excel</strong> to get started' : 'No results found for your search';
+  if (emptyMsg && DATA.length > 0 && filtered.length === 0) {
+    emptyMsg.innerHTML = 'No results found for your search.';
+  }
 
   tbody.innerHTML = '';
   page.forEach((item, i) => {
@@ -711,7 +567,7 @@ function render() {
     if(isSel) tr.classList.add('selected');
     tr.innerHTML = `
       <td><input type="checkbox" class="chk" ${isSel?'checked':''} onchange="toggleRow(${idx},this)"></td>
-      <td style="color:var(--text3);font-family:'DM Mono',monospace;font-size:11px;">${globalIdx}</td>
+      <td class="row-num">${globalIdx}</td>
       <td class="sku-cell">${sku}</td>
       <td><span class="label-cell">${label}</span></td>
       <td>
@@ -732,7 +588,6 @@ function render() {
   syncSelectAllUI();
 }
 
-// ── PAGINATION ──
 function renderPagination() {
   const total = Math.ceil(filtered.length/PAGE_SIZE);
   const pg = document.getElementById('pagination');
@@ -752,7 +607,7 @@ function renderPagination() {
   range.forEach(r=>{
     if(r==='…'){
       const sp=document.createElement('span');
-      sp.style.cssText='padding:0 4px;color:var(--ink2);font-size:13px;';
+      sp.style.cssText='padding:0 4px;color:var(--text3);font-size:13px;';
       sp.textContent='…'; pg.appendChild(sp); return;
     }
     const b=document.createElement('button');
@@ -767,7 +622,6 @@ function renderPagination() {
   pg.appendChild(next);
 }
 
-// ── SEARCH ──
 document.getElementById('searchInput').addEventListener('input', function(){
   const q = this.value.trim().toLowerCase();
   if (!q) {
@@ -776,24 +630,22 @@ document.getElementById('searchInput').addEventListener('input', function(){
     filtered = DATA.filter(d => {
       const sku = d['SKU'].toLowerCase();
       const label = d['Barcode Lable'].toLowerCase();
-      // Extract the leading number from SKU (e.g. "05" from "05SM_...")
       const skuNumMatch = sku.match(/^(\d+)/);
       const skuNum = skuNumMatch ? skuNumMatch[1] : '';
-      // If query is purely numeric, match only from the start of the SKU number
       if (/^\d+$/.test(q)) {
-        return skuNum === q || skuNum.startsWith(q) && skuNum.length === q.length;
+        return skuNum === q || (skuNum.startsWith(q) && skuNum.length === q.length);
       }
-      // Otherwise match SKU or label from start
       return sku.startsWith(q) || label.startsWith(q) || sku.includes(q);
     });
   }
   currentPage=1; render();
 });
 
-// ── SELECT ──
 function toggleRow(idx, chk) {
   if(chk.checked) selected.add(idx); else selected.delete(idx);
   document.getElementById('selCount').textContent = selected.size;
+  document.getElementById('selBarCount').textContent = selected.size;
+  document.getElementById('headerSel').textContent = selected.size;
   chk.closest('tr').classList.toggle('selected', chk.checked);
   syncSelectAllUI();
 }
@@ -810,17 +662,15 @@ function syncSelectAllUI() {
 function handleSelectAllBtn() {
   const allIdxs = filtered.map(item => DATA.indexOf(item));
   const allChosen = allIdxs.every(i => selected.has(i));
-  if(allChosen) {
-    allIdxs.forEach(i => selected.delete(i));
-  } else {
-    allIdxs.forEach(i => selected.add(i));
-  }
+  if(allChosen) { allIdxs.forEach(i => selected.delete(i)); }
+  else { allIdxs.forEach(i => selected.add(i)); }
   document.getElementById('selCount').textContent = selected.size;
+  document.getElementById('selBarCount').textContent = selected.size;
+  document.getElementById('headerSel').textContent = selected.size;
   render();
 }
 
 function toggleSelectAll() {
-  // header checkbox in table
   const hchk = document.getElementById('headerChk');
   const shouldSelect = hchk.checked;
   filtered.forEach(item => {
@@ -828,11 +678,21 @@ function toggleSelectAll() {
     if(shouldSelect) selected.add(i); else selected.delete(i);
   });
   document.getElementById('selCount').textContent = selected.size;
+  document.getElementById('selBarCount').textContent = selected.size;
+  document.getElementById('headerSel').textContent = selected.size;
   syncSelectAllUI();
   render();
 }
 
-// ── PER-ROW QTY ──
+function clearAll() {
+  selected.clear();
+  document.getElementById('selCount').textContent = 0;
+  document.getElementById('selBarCount').textContent = 0;
+  document.getElementById('headerSel').textContent = 0;
+  document.getElementById('selBar').className = 'sel-bar';
+  render();
+}
+
 function setRowQty(idx, val) {
   const v = Math.max(1, Math.min(99, parseInt(val) || 1));
   rowQty.set(idx, v);
@@ -847,7 +707,6 @@ function changeRowQty(idx, delta) {
   if (inp) inp.value = v;
 }
 
-// ── PREVIEW ──
 function previewLabel(idx) {
   const item = DATA[idx];
   const sku = item['SKU'];
@@ -856,13 +715,11 @@ function previewLabel(idx) {
   document.getElementById('modalSub').textContent = sku;
   document.getElementById('prevTop').textContent = sku;
   document.getElementById('prevBottom').textContent = label;
-
   const cont = document.getElementById('prevBarcode');
   cont.innerHTML='';
   const svg = makeBarcodeSVG(label, 320, 120);
   cont.parentNode.replaceChild(svg, cont);
   svg.id='prevBarcode';
-
   document.getElementById('modalOverlay').classList.add('open');
 }
 function closeModal(e) {
@@ -871,11 +728,8 @@ function closeModal(e) {
   }
 }
 
-// ── PRINT ──
 function printSelected() {
   if(selected.size === 0){ alert('Please select at least one item to print.'); return; }
-
-  // Build all label HTML cards using per-row qty
   let labelsHTML = '';
   selected.forEach(idx => {
     const item = DATA[idx];
@@ -886,105 +740,26 @@ function printSelected() {
       labelsHTML += `<div class="label-card"><div class="lbl-top">${sku}</div><svg class="bc" data-val="${label}"></svg><div class="lbl-bottom">${label}</div></div>`;
     }
   });
-
   const printWin = window.open('', '_blank', 'width=800,height=600');
-  printWin.document.write(`<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Print Labels</title>
+  printWin.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Print Labels</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js"><\/script>
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  @page {
-    margin: 0;
-    size: 100mm 53mm;
-  }
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: #fff;
-  }
-  .label-card {
-    width: 100mm;
-    height: 53mm;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2mm 4mm;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    page-break-after: always;
-    break-after: page;
-    overflow: hidden;
-  }
-  .label-card:last-child {
-    page-break-after: avoid;
-    break-after: avoid;
-  }
-  .lbl-top {
-    font-size: 18pt;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 1mm;
-    line-height: 1.1;
-    width: 100%;
-  }
-  .lbl-bottom {
-    font-size: 17pt;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 1mm;
-    letter-spacing: 0.02em;
-    width: 100%;
-  }
-  svg.bc {
-    width: 94% !important;
-    max-width: 94%;
-    display: block;
-  }
-</style>
-</head>
-<body>
-${labelsHTML}
-<script>
-  document.querySelectorAll('svg.bc').forEach(function(svg){
-    var val = svg.getAttribute('data-val');
-    try {
-      JsBarcode(svg, val, {
-        format: 'CODE128',
-        width: 3,
-        height: 105,
-        displayValue: false,
-        margin: 0,
-        background: '#ffffff',
-        lineColor: '#000000'
-      });
-    } catch(e){}
-  });
-  setTimeout(function(){ window.print(); window.close(); }, 700);
-<\/script>
-</body>
-</html>`);
+<style>*{margin:0;padding:0;box-sizing:border-box;}@page{margin:0;size:100mm 53mm;}html,body{margin:0;padding:0;background:#fff;}.label-card{width:100mm;height:53mm;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2mm 4mm;font-family:'Helvetica Neue',Arial,sans-serif;page-break-after:always;break-after:page;overflow:hidden;}.label-card:last-child{page-break-after:avoid;break-after:avoid;}.lbl-top{font-size:18pt;font-weight:500;text-align:center;margin-bottom:1mm;line-height:1.1;width:100%;}.lbl-bottom{font-size:17pt;font-weight:700;text-align:center;margin-top:1mm;letter-spacing:0.02em;width:100%;}svg.bc{width:94%!important;max-width:94%;display:block;}</style>
+</head><body>${labelsHTML}
+<script>document.querySelectorAll('svg.bc').forEach(function(svg){var val=svg.getAttribute('data-val');try{JsBarcode(svg,val,{format:'CODE128',width:3,height:105,displayValue:false,margin:0,background:'#ffffff',lineColor:'#000000'});}catch(e){}});setTimeout(function(){window.print();window.close();},700);<\/script></body></html>`);
   printWin.document.close();
-
-  // Auto-deselect and reset qty after print
   setTimeout(() => {
     selected.forEach(idx => rowQty.delete(idx));
     selected.clear();
     document.getElementById('selCount').textContent = 0;
+    document.getElementById('selBarCount').textContent = 0;
     document.getElementById('headerSel').textContent = 0;
     document.getElementById('selBar').className = 'sel-bar';
-    syncSelectAllUI();
-    render();
+    syncSelectAllUI(); render();
   }, 800);
 }
 
-// ── DOWNLOAD PDF ──
 function downloadSelected() {
   if (selected.size === 0) { alert('Please select at least one item to download.'); return; }
-
   let labelsHTML = '';
   selected.forEach(idx => {
     const item = DATA[idx];
@@ -995,198 +770,34 @@ function downloadSelected() {
       labelsHTML += `<div class="label-card"><div class="lbl-top">${sku}</div><svg class="bc" data-val="${label}"></svg><div class="lbl-bottom">${label}</div></div>`;
     }
   });
-
   const downloadWin = window.open('', '_blank', 'width=800,height=600');
-  downloadWin.document.write(`<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Download Labels</title>
+  downloadWin.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Download Labels</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js"><\/script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#1a1814; display:flex; align-items:center; justify-content:center; min-height:100vh; font-family:Arial,sans-serif; }
-  #status {
-    color:#fff; text-align:center; padding:40px;
-  }
-  #status .icon { font-size:48px; margin-bottom:16px; }
-  #status .msg { font-size:16px; color:#aaa; margin-bottom:8px; }
-  #status .sub { font-size:13px; color:#666; }
-  #status .progress {
-    width:200px; height:4px; background:#333; border-radius:2px; margin:16px auto 0;
-    overflow:hidden;
-  }
-  #status .progress-bar {
-    height:100%; background:#c8411a; border-radius:2px;
-    animation: prog 2s ease-in-out infinite;
-  }
-  @keyframes prog { 0%{width:0%} 70%{width:85%} 100%{width:95%} }
-
-  /* hidden render area */
-  #renderArea {
-    position:fixed; left:-9999px; top:0;
-    background:#fff;
-  }
-  .label-card {
-    width: 378px;
-    height: 200px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    overflow: hidden;
-  }
-  .lbl-top { font-size: 22px; font-weight: 500; text-align:center; margin-bottom:4px; line-height:1.1; width:100%; }
-  .lbl-bottom { font-size: 20px; font-weight: 700; text-align:center; margin-top:4px; width:100%; }
-  svg.bc { width:94% !important; max-width:94%; display:block; }
-</style>
-</head>
-<body>
-<div id="status">
-  <div class="icon">⬇️</div>
-  <div class="msg">Generating PDF…</div>
-  <div class="sub">Please wait, building your labels</div>
-  <div class="progress"><div class="progress-bar"></div></div>
-</div>
-<div id="renderArea">${labelsHTML}</div>
-<script>
-window.onload = async function() {
-  // Step 1: render all barcodes
-  document.querySelectorAll('svg.bc').forEach(function(svg) {
-    var val = svg.getAttribute('data-val');
-    try {
-      JsBarcode(svg, val, {
-        format: 'CODE128', width: 3, height: 105,
-        displayValue: false, margin: 0,
-        background: '#ffffff', lineColor: '#000000'
-      });
-    } catch(e) {}
-  });
-
-  await new Promise(r => setTimeout(r, 400));
-
-  // Step 2: use jsPDF to create PDF
-  const { jsPDF } = window.jspdf;
-  // 100mm x 53mm per label
-  const W = 100, H = 53;
-  const pdf = new jsPDF({ unit: 'mm', format: [W, H], orientation: 'landscape' });
-
-  const cards = document.querySelectorAll('.label-card');
-  for (let i = 0; i < cards.length; i++) {
-    if (i > 0) pdf.addPage([W, H], 'landscape');
-    const card = cards[i];
-
-    // Draw white background
-    pdf.setFillColor(255,255,255);
-    pdf.rect(0, 0, W, H, 'F');
-
-    // Get SKU and label text from card
-    const topEl = card.querySelector('.lbl-top');
-    const botEl = card.querySelector('.lbl-bottom');
-    const skuText = topEl ? topEl.textContent : '';
-    const lblText = botEl ? botEl.textContent : '';
-
-    // Get barcode SVG as image via canvas
-    const svgEl = card.querySelector('svg.bc');
-    let barcodeDataUrl = null;
-    if (svgEl) {
-      try {
-        const svgData = new XMLSerializer().serializeToString(svgEl);
-        const svgBlob = new Blob([svgData], {type:'image/svg+xml;charset=utf-8'});
-        const url = URL.createObjectURL(svgBlob);
-        await new Promise((res, rej) => {
-          const img = new Image();
-          img.onload = function() {
-            const cvs = document.createElement('canvas');
-            cvs.width = svgEl.getBoundingClientRect().width || 340;
-            cvs.height = svgEl.getBoundingClientRect().height || 105;
-            const ctx = cvs.getContext('2d');
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(0,0,cvs.width,cvs.height);
-            ctx.drawImage(img,0,0,cvs.width,cvs.height);
-            barcodeDataUrl = cvs.toDataURL('image/png');
-            URL.revokeObjectURL(url);
-            res();
-          };
-          img.onerror = () => { URL.revokeObjectURL(url); res(); };
-          img.src = url;
-        });
-      } catch(e) {}
-    }
-
-    // Layout: top text, barcode, bottom text
-    const marginX = 3;
-    const usableW = W - marginX * 2;
-    let y = 3;
-
-    // SKU text (top)
-    pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(14);
-    pdf.setTextColor(0,0,0);
-    pdf.text(skuText, W/2, y + 5, { align:'center' });
-    y += 9;
-
-    // Barcode image
-    if (barcodeDataUrl) {
-      const bW = usableW * 0.94;
-      const bH = 26;
-      const bX = (W - bW) / 2;
-      pdf.addImage(barcodeDataUrl, 'PNG', bX, y, bW, bH);
-      y += bH + 2;
-    } else {
-      y += 28;
-    }
-
-    // Label text (bottom) - bold
-    pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(13);
-    pdf.text(lblText, W/2, y + 5, { align:'center' });
-  }
-
-  // Step 3: save
-  const count = cards.length;
-  pdf.save('Bullane_Barcodes_' + count + '_labels.pdf');
-
-  document.querySelector('.msg').textContent = '✅ Download started!';
-  document.querySelector('.sub').textContent = count + ' label(s) saved to your Downloads folder.';
-  document.querySelector('.progress').style.display = 'none';
-  setTimeout(function(){ window.close(); }, 2000);
-};
-<\/script>
-</body>
-</html>`);
+<style>*{margin:0;padding:0;box-sizing:border-box;}body{background:#1a1814;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:Arial,sans-serif;}#status{color:#fff;text-align:center;padding:40px;}#status .icon{font-size:48px;margin-bottom:16px;}#status .msg{font-size:16px;color:#aaa;margin-bottom:8px;}#status .sub{font-size:13px;color:#666;}#status .progress{width:200px;height:4px;background:#333;border-radius:2px;margin:16px auto 0;overflow:hidden;}#status .progress-bar{height:100%;background:#c8411a;border-radius:2px;animation:prog 2s ease-in-out infinite;}@keyframes prog{0%{width:0%}70%{width:85%}100%{width:95%}}#renderArea{position:fixed;left:-9999px;top:0;background:#fff;}.label-card{width:378px;height:200px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 16px;font-family:'Helvetica Neue',Arial,sans-serif;overflow:hidden;}.lbl-top{font-size:22px;font-weight:500;text-align:center;margin-bottom:4px;line-height:1.1;width:100%;}.lbl-bottom{font-size:20px;font-weight:700;text-align:center;margin-top:4px;width:100%;}svg.bc{width:94%!important;max-width:94%;display:block;}</style>
+</head><body><div id="status"><div class="icon">⬇️</div><div class="msg">Generating PDF…</div><div class="sub">Please wait, building your labels</div><div class="progress"><div class="progress-bar"></div></div></div><div id="renderArea">${labelsHTML}</div>
+<script>window.onload=async function(){document.querySelectorAll('svg.bc').forEach(function(svg){var val=svg.getAttribute('data-val');try{JsBarcode(svg,val,{format:'CODE128',width:3,height:105,displayValue:false,margin:0,background:'#ffffff',lineColor:'#000000'});}catch(e){}});await new Promise(r=>setTimeout(r,400));const{jsPDF}=window.jspdf;const W=100,H=53;const pdf=new jsPDF({unit:'mm',format:[W,H],orientation:'landscape'});const cards=document.querySelectorAll('.label-card');for(let i=0;i<cards.length;i++){if(i>0)pdf.addPage([W,H],'landscape');const card=cards[i];pdf.setFillColor(255,255,255);pdf.rect(0,0,W,H,'F');const topEl=card.querySelector('.lbl-top');const botEl=card.querySelector('.lbl-bottom');const skuText=topEl?topEl.textContent:'';const lblText=botEl?botEl.textContent:'';const svgEl=card.querySelector('svg.bc');let barcodeDataUrl=null;if(svgEl){try{const svgData=new XMLSerializer().serializeToString(svgEl);const svgBlob=new Blob([svgData],{type:'image/svg+xml;charset=utf-8'});const url=URL.createObjectURL(svgBlob);await new Promise((res,rej)=>{const img=new Image();img.onload=function(){const cvs=document.createElement('canvas');cvs.width=svgEl.getBoundingClientRect().width||340;cvs.height=svgEl.getBoundingClientRect().height||105;const ctx=cvs.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,cvs.width,cvs.height);ctx.drawImage(img,0,0,cvs.width,cvs.height);barcodeDataUrl=cvs.toDataURL('image/png');URL.revokeObjectURL(url);res();};img.onerror=()=>{URL.revokeObjectURL(url);res();};img.src=url;});}catch(e){}}const marginX=3;const usableW=W-marginX*2;let y=3;pdf.setFont('helvetica','normal');pdf.setFontSize(14);pdf.setTextColor(0,0,0);pdf.text(skuText,W/2,y+5,{align:'center'});y+=9;if(barcodeDataUrl){const bW=usableW*0.94;const bH=26;const bX=(W-bW)/2;pdf.addImage(barcodeDataUrl,'PNG',bX,y,bW,bH);y+=bH+2;}else{y+=28;}pdf.setFont('helvetica','bold');pdf.setFontSize(13);pdf.text(lblText,W/2,y+5,{align:'center'});}const count=cards.length;pdf.save('Bullane_Barcodes_'+count+'_labels.pdf');document.querySelector('.msg').textContent='✅ Download started!';document.querySelector('.sub').textContent=count+' label(s) saved to your Downloads folder.';document.querySelector('.progress').style.display='none';setTimeout(function(){window.close();},2000);};<\/script></body></html>`);
   downloadWin.document.close();
-
-  // Auto-deselect and reset qty after download
   setTimeout(() => {
     selected.forEach(idx => rowQty.delete(idx));
     selected.clear();
     document.getElementById('selCount').textContent = 0;
+    document.getElementById('selBarCount').textContent = 0;
     document.getElementById('headerSel').textContent = 0;
     document.getElementById('selBar').className = 'sel-bar';
-    syncSelectAllUI();
-    render();
+    syncSelectAllUI(); render();
   }, 900);
 }
 
-// ── THEME ──
 function setTheme(t) {
   document.body.classList.toggle('light', t === 'light');
   document.getElementById('btnDark').classList.toggle('active', t !== 'light');
   document.getElementById('btnLight').classList.toggle('active', t === 'light');
   localStorage.setItem('je_theme', t);
 }
-// restore saved theme
 (function(){ const t = localStorage.getItem('je_theme'); if(t) setTheme(t); })();
 
-// ── AUTO LOAD FROM GOOGLE SHEET ──
 loadFromGoogleSheet();
-
-// init
 render();
 </script>
 </body>
