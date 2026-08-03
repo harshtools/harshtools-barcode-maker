@@ -486,6 +486,7 @@ body:not(.light) .sku-cell { color: #e0e8ff; }
         <th>#</th>
         <th>Photo</th>
         <th>SKU</th>
+        <th>Office</th>
         <th>Barcode Label</th>
         <th style="width:120px;">QTY</th>
         <th>Preview</th>
@@ -726,9 +727,10 @@ async function loadFromGoogleSheet() {
       const photoD = (cols[3] || '').trim();
       const photoC = (cols[2] || '').trim();
       const photoRaw = photoD || photoC;
-      if (sku && label) {
-        newData.push({ 'SKU': sku, 'Barcode Lable': label, 'Photo': normalizePhotoUrl(photoRaw) });
-      }
+      const office = (cols[4] || '').trim();
+       if (sku && label) {
+          newData.push({ 'SKU': sku, 'Barcode Lable': label, 'Photo': normalizePhotoUrl(photoRaw), 'Office': office });
+       }
     }
     if (newData.length > 0) {
       DATA.splice(0, DATA.length, ...newData);
@@ -860,9 +862,9 @@ function render() {
     tr.innerHTML = `
       <td><input type="checkbox" class="chk" ${isSel?'checked':''} onchange="toggleRow(${idx},this)"></td>
       <td style="color:var(--text3);font-family:'DM Mono',monospace;font-size:11px;">${globalIdx}</td>
-      <td>${photoCell}</td>
       <td class="sku-cell">${sku}</td>
-      <td><span class="label-cell">${label}</span></td>
+       <td class="sku-cell">${item['Office'] || '—'}</td>
+       <td><span class="label-cell">${label}</span></td>
       <td>
         <div class="row-qty-wrap">
           <button class="row-qty-btn" onclick="changeRowQty(${idx},-1)">−</button>
