@@ -724,11 +724,11 @@ async function loadFromGoogleSheet() {
       const label = (cols[1] || '').trim();
       // Column D = Drive photo link (this sheet already has photos here). Column C = fallback.
       const photoD = (cols[3] || '').trim();
-const photoC = (cols[2] || '').trim();
-const photoRaw = photoD || photoC;
-if (sku && label) {
-  newData.push({ 'SKU': sku, 'Barcode Lable': label, 'Photo': normalizePhotoUrl(photoRaw) });
-}
+      const photoC = (cols[2] || '').trim();
+      const photoRaw = photoD || photoC;
+      if (sku && label) {
+        newData.push({ 'SKU': sku, 'Barcode Lable': label, 'Photo': normalizePhotoUrl(photoRaw) });
+      }
     }
     if (newData.length > 0) {
       DATA.splice(0, DATA.length, ...newData);
@@ -860,8 +860,9 @@ function render() {
     tr.innerHTML = `
       <td><input type="checkbox" class="chk" ${isSel?'checked':''} onchange="toggleRow(${idx},this)"></td>
       <td style="color:var(--text3);font-family:'DM Mono',monospace;font-size:11px;">${globalIdx}</td>
+      <td>${photoCell}</td>
       <td class="sku-cell">${sku}</td>
-<td><span class="label-cell">${label}</span></td>
+      <td><span class="label-cell">${label}</span></td>
       <td>
         <div class="row-qty-wrap">
           <button class="row-qty-btn" onclick="changeRowQty(${idx},-1)">−</button>
