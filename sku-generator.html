@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="dark light">
+<title>SKU Generator</title>
+<style>
+  :root{
+    --ink:#2b241c;
+    --paper:#f6f2ea;
+    --card:#fffdf8;
+    --line:#d8cdb8;
+    --accent:#8a5a3b;
+    --accent-dim:#c9a67e;
+    --accent-hover:#734a2f;
+    --muted:#7a6c55;
+    --muted2:#a08a63;
+    --fixed-bg:#f0e9db;
+    --fixed-text:#8a7a5f;
+    --preview-bg:#fbf3e7;
+    --placeholder:#c4b8a0;
+    --hover-fill:#f0e4d4;
+    --good:#4a7a5a;
+    --mono: 'Courier New', ui-monospace, monospace;
+  }
+  html.dark{
+    --ink:#f1ece0;
+    --paper:#1c1a16;
+    --card:#26221c;
+    --line:#4a4234;
+    --accent:#dcae7c;
+    --accent-dim:#8a6b47;
+    --accent-hover:#e8c197;
+    --muted:#b6a98c;
+    --muted2:#9c8a68;
+    --fixed-bg:#332d24;
+    --fixed-text:#d8c9a8;
+    --preview-bg:#241f18;
+    --placeholder:#6b6152;
+    --hover-fill:#332a1e;
+    --good:#7fbf8f;
+  }
+  *{box-sizing:border-box;}
+  html{
+    background:#1c1a16;
+    min-height:100%;
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia, 'Times New Roman', serif;
+    padding:32px 16px 60px;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .wrap{max-width:1160px;margin:0 auto;}
+  .top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+  }
+  .theme-toggle{
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+  }
+  .toggle-track{
+    position:relative;
+    display:flex;
+    align-items:center;
+    width:42px;
+    height:22px;
+    border-radius:11px;
+    background:var(--fixed-bg);
+    border:1px solid var(--line);
+    transition:background 0.25s ease, border-color 0.25s ease;
+  }
+  .toggle-icon{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:9px;
+    line-height:1;
+    color:var(--muted);
+  }
+  .toggle-icon.sun{left:5px;}
+  .toggle-icon.moon{right:5px;}
+  .toggle-thumb{
+    position:absolute;
+    top:2px;
+    left:2px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 1px 3px rgba(0,0,0,0.25);
+    transition:left 0.25s ease, background 0.25s ease;
+  }
+  html.dark .toggle-thumb{left:24px;}
+  .theme-toggle:hover{background:var(--hover-fill);}
+  .page-title{
+    margin:0;
+    font-size:15px;
+    letter-spacing:0.5px;
+    color:var(--accent);
+  }
+  .page-rule{
+    border:none;
+    border-top:2px dashed var(--line);
+    margin:0 0 32px;
+  }
+  .columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .columns{grid-template-columns:1fr;}
+  }
+  h1{
+    font-size:24px;
+    font-weight:normal;
+    margin:0 0 4px;
+    letter-spacing:0.3px;
+    color:var(--ink);
+  }
+  .col-tag{
+    font-size:12px;
+    color:var(--muted);
+    margin:0 0 16px;
+  }
+  .builder{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:22px;
+    margin-bottom:20px;
+  }
+  .row{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .field{flex:1;min-width:100px;}
+  .field.small{flex:0 0 76px;min-width:76px;}
+  .field.wide{flex:1 1 100%;}
+  label{
+    display:block;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:6px;
+    font-family:Georgia, serif;
+  }
+  input, textarea{
+    width:100%;
+    padding:9px 10px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    background:var(--card);
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--ink);
+  }
+  input::placeholder, textarea::placeholder{
+    color:var(--placeholder);
+    opacity:1;
+  }
+  textarea{resize:vertical;}
+  input:focus, textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+  }
+  .fixed{
+    background:var(--fixed-bg);
+    color:var(--fixed-text);
+    font-size:13px;
+    padding:9px 10px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    text-align:center;
+  }
+  .preview{
+    background:var(--preview-bg);
+    border:1px solid var(--accent-dim);
+    border-radius:4px;
+    padding:20px 22px;
+    margin-bottom:20px;
+    box-shadow:0 0 0 1px rgba(138,90,59,0.08);
+  }
+  .preview h2{
+    font-size:13px;
+    font-weight:normal;
+    color:var(--accent);
+    margin:0 0 12px;
+  }
+  .sku-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .sku-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--card);
+    border:1px solid var(--accent-dim);
+    border-left:4px solid var(--accent);
+    border-radius:3px;
+    padding:9px 12px;
+  }
+  .sku-item .size-tag{
+    font-size:11px;
+    color:var(--muted2);
+    width:28px;
+  }
+  .sku-item .code{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:bold;
+    color:var(--accent);
+    flex:1;
+    margin-left:6px;
+    word-break:break-all;
+  }
+  .copy-btn{
+    background:none;
+    border:1px solid var(--accent-dim);
+    color:var(--accent);
+    border-radius:3px;
+    padding:5px 10px;
+    font-size:12px;
+    font-family:Georgia,serif;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .copy-btn:hover{background:var(--hover-fill);}
+  .copy-btn.copied{
+    border-color:var(--good);
+    color:var(--good);
+  }
+  .actions{
+    display:flex;
+    gap:10px;
+    margin-top:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    border:none;
+    border-radius:3px;
+    padding:10px 16px;
+    font-size:14px;
+    font-family:Georgia,serif;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+  }
+  .btn-primary:hover{background:var(--accent-hover);}
+  html.dark .btn-primary{color:#241f18;}
+  .btn-secondary{
+    background:none;
+    border:1px solid var(--accent-dim);
+    color:var(--accent);
+  }
+  .btn-secondary:hover{background:var(--hover-fill);}
+  .status{
+    font-size:12px;
+    color:var(--muted2);
+    margin-top:8px;
+    min-height:16px;
+  }
+  .bulk-group{
+    background:var(--card);
+    border:1px solid var(--accent-dim);
+    border-left:4px solid var(--accent);
+    border-radius:3px;
+    padding:12px 14px;
+    margin-bottom:10px;
+  }
+  .bulk-group .bulk-base{
+    font-size:11px;
+    color:var(--muted2);
+    margin-bottom:8px;
+  }
+  .bulk-group .bulk-sizes{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .bulk-sku-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .bulk-sku-row .size-tag{
+    font-size:11px;
+    color:var(--muted2);
+    width:28px;
+  }
+  .bulk-sku-row .code{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:bold;
+    color:var(--accent);
+    flex:1;
+    margin-left:6px;
+    word-break:break-all;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-bar">
+    <div>
+      <p class="page-title">MENS SHIRT — SKU WORKSHOP</p>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-track">
+        <span class="toggle-icon sun">☀</span>
+        <span class="toggle-icon moon">☾</span>
+        <span class="toggle-thumb"></span>
+      </span>
+    </button>
+  </div>
+  <hr class="page-rule">
+  <div class="columns">
+
+    <!-- LEFT: Bulk SKU Generator -->
+    <div class="column">
+      <h1>Bulk SKU Generator</h1>
+      <p class="col-tag">One collection, many colors — number increments per design</p>
+
+      <div class="builder">
+        <div class="row">
+          <div class="field small">
+            <label>Start SKU No.</label>
+            <input id="bulkNum" type="text" placeholder="1122" maxlength="6">
+          </div>
+          <div class="field small">
+            <label>Mens Shirt</label>
+            <div class="fixed">MS</div>
+          </div>
+          <div class="field small">
+            <label>Type of collar</label>
+            <input id="bulkBd" type="text" placeholder="BD" maxlength="6">
+          </div>
+          <div class="field small">
+            <label>Textured</label>
+            <input id="bulkCode" type="text" placeholder="PL" maxlength="4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field wide">
+            <label>Colors — one design per line</label>
+            <textarea id="bulkColors" rows="4" placeholder="Cream&#10;White&#10;Black&#10;Brown"></textarea>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" id="bulkGenBtn">SKU Generate</button>
+          <button class="btn btn-primary" id="bulkCopyAllBtn">Copy all</button>
+        </div>
+        <div class="status" id="bulkStatus"></div>
+      </div>
+
+      <div class="preview" id="bulkPreview" style="display:none;">
+        <h2>Collection SKUs</h2>
+        <div id="bulkList"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: SKU Generator -->
+    <div class="column">
+      <h1>SKU Generator</h1>
+      <p class="col-tag">One design, one color, all four sizes</p>
+
+      <div class="builder">
+        <div class="row">
+          <div class="field small">
+            <label>SKU No.</label>
+            <input id="num" type="text" placeholder="01" maxlength="4">
+          </div>
+          <div class="field small">
+            <label>Mens Shirt</label>
+            <div class="fixed">MS</div>
+          </div>
+          <div class="field small">
+            <label>Type of collar</label>
+            <input id="bd" type="text" placeholder="BD" maxlength="6">
+          </div>
+          <div class="field small">
+            <label>Textured</label>
+            <input id="code" type="text" placeholder="SO" maxlength="4">
+          </div>
+          <div class="field">
+            <label>Color</label>
+            <input id="color" type="text" placeholder="White">
+          </div>
+        </div>
+      </div>
+
+      <div class="preview">
+        <h2>Generated SKUs</h2>
+        <div class="sku-list" id="skuList"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="copyAllBtn">Copy all</button>
+        </div>
+        <div class="status" id="status"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const SIZES = ["S","M","L","XL"];
+
+// ---- Theme toggle ----
+const themeToggle = document.getElementById('themeToggle');
+document.documentElement.classList.add('dark');
+document.documentElement.style.colorScheme = 'dark';
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.classList.toggle('dark');
+  document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+});
+
+// ---- Formatting rules ----
+function onlyDigits(str){ return str.replace(/[^0-9]/g, ''); }
+function toUpper(str){ return str.toUpperCase(); }
+function capitalizeColor(str){
+  if(!str) return str;
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+function normalizeField(el, fn, onChange){
+  el.addEventListener('input', () => {
+    const pos = el.selectionStart;
+    const before = el.value;
+    const after = fn(before);
+    if(before !== after){
+      el.value = after;
+      const diff = after.length - before.length;
+      el.setSelectionRange(pos + diff, pos + diff);
+    }
+    if(onChange) onChange();
+  });
+}
+
+function setupEnterFlow(fieldOrder, onLast){
+  fieldOrder.forEach((el, idx) => {
+    el.addEventListener('keydown', (e) => {
+      if(e.key !== 'Enter') return;
+      if(el.tagName === 'TEXTAREA') return; // allow normal newlines
+      e.preventDefault();
+      if(idx < fieldOrder.length - 1){
+        fieldOrder[idx + 1].focus();
+        fieldOrder[idx + 1].select();
+      } else if(onLast){
+        onLast();
+      }
+    });
+  });
+}
+
+// =========================================================
+// SINGLE SKU GENERATOR
+// =========================================================
+const numEl = document.getElementById('num');
+const bdEl = document.getElementById('bd');
+const codeEl = document.getElementById('code');
+const colorEl = document.getElementById('color');
+const skuList = document.getElementById('skuList');
+const statusEl = document.getElementById('status');
+const copyAllBtn = document.getElementById('copyAllBtn');
+
+function buildBase(){
+  const num = numEl.value.trim();
+  const bd = bdEl.value.trim();
+  const code = codeEl.value.trim();
+  const color = colorEl.value.trim();
+  let base = (num || '') + 'MS_';
+  if(bd) base += bd + '_';
+  base += (code || '') + (color || '');
+  return base;
+}
+
+function buildSkus(){
+  const base = buildBase();
+  return SIZES.map(s => base + '-' + s);
+}
+
+function renderPreview(){
+  const skus = buildSkus();
+  skuList.innerHTML = '';
+  skus.forEach((sku, i) => {
+    const row = document.createElement('div');
+    row.className = 'sku-item';
+    row.innerHTML = `
+      <span class="size-tag">${SIZES[i]}</span>
+      <span class="code">${sku}</span>
+      <button class="copy-btn" data-sku="${sku}">Copy</button>
+    `;
+    skuList.appendChild(row);
+  });
+}
+
+skuList.addEventListener('click', (e) => {
+  if(e.target.classList.contains('copy-btn')){
+    const sku = e.target.getAttribute('data-sku');
+    navigator.clipboard.writeText(sku).then(() => {
+      e.target.textContent = 'Copied';
+      e.target.classList.add('copied');
+      setTimeout(() => {
+        e.target.textContent = 'Copy';
+        e.target.classList.remove('copied');
+      }, 1200);
+    });
+  }
+});
+
+function copyAllSingle(){
+  const skus = buildSkus();
+  navigator.clipboard.writeText(skus.join('\n')).then(() => {
+    statusEl.textContent = 'All 4 SKUs copied to clipboard.';
+    setTimeout(() => statusEl.textContent = '', 2000);
+  });
+}
+
+copyAllBtn.addEventListener('click', copyAllSingle);
+
+normalizeField(numEl, onlyDigits, renderPreview);
+normalizeField(bdEl, toUpper, renderPreview);
+normalizeField(codeEl, toUpper, renderPreview);
+normalizeField(colorEl, capitalizeColor, renderPreview);
+
+setupEnterFlow([numEl, bdEl, codeEl, colorEl], copyAllSingle);
+
+renderPreview();
+
+// =========================================================
+// BULK SKU GENERATOR
+// =========================================================
+const bulkNumEl = document.getElementById('bulkNum');
+const bulkBdEl = document.getElementById('bulkBd');
+const bulkCodeEl = document.getElementById('bulkCode');
+const bulkColorsEl = document.getElementById('bulkColors');
+const bulkPreview = document.getElementById('bulkPreview');
+const bulkList = document.getElementById('bulkList');
+const bulkStatus = document.getElementById('bulkStatus');
+
+normalizeField(bulkNumEl, onlyDigits);
+normalizeField(bulkBdEl, toUpper);
+normalizeField(bulkCodeEl, toUpper);
+
+function incrementNumber(numStr, offset){
+  const width = numStr.length;
+  const next = (parseInt(numStr, 10) || 0) + offset;
+  let s = String(next);
+  if(s.length < width) s = s.padStart(width, '0');
+  return s;
+}
+
+function buildBulkSkus(){
+  const startNum = bulkNumEl.value.trim();
+  const bd = bulkBdEl.value.trim();
+  const code = bulkCodeEl.value.trim();
+  const colors = bulkColorsEl.value
+    .split('\n')
+    .map(c => c.trim())
+    .filter(c => c.length > 0)
+    .map(capitalizeColor);
+
+  return colors.map((color, i) => {
+    const num = incrementNumber(startNum, i);
+    let base = num + 'MS_';
+    if(bd) base += bd + '_';
+    base += code + color;
+    const skus = SIZES.map(s => base + '-' + s);
+    return { base, skus };
+  });
+}
+
+function renderBulk(groups){
+  bulkList.innerHTML = '';
+  groups.forEach(group => {
+    const div = document.createElement('div');
+    div.className = 'bulk-group';
+    div.innerHTML = `
+      <div class="bulk-base">${group.base}</div>
+      <div class="bulk-sizes">
+        ${group.skus.map((sku, i) => `
+          <div class="bulk-sku-row">
+            <span class="size-tag">${SIZES[i]}</span>
+            <span class="code">${sku}</span>
+            <button class="copy-btn" data-sku="${sku}">Copy</button>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    bulkList.appendChild(div);
+  });
+}
+
+function generateBulk(){
+  const startNum = bulkNumEl.value.trim();
+  const code = bulkCodeEl.value.trim();
+  const colors = bulkColorsEl.value.split('\n').map(c => c.trim()).filter(c => c.length > 0);
+
+  if(!startNum || !code || colors.length === 0){
+    bulkStatus.textContent = 'Fill start SKU no., code, and at least one color line.';
+    return;
+  }
+
+  const groups = buildBulkSkus();
+  renderBulk(groups);
+  bulkPreview.style.display = 'block';
+  bulkStatus.textContent = `Generated ${groups.length} design${groups.length > 1 ? 's' : ''}, ${groups.length * 4} SKUs total.`;
+}
+
+document.getElementById('bulkGenBtn').addEventListener('click', generateBulk);
+
+bulkList.addEventListener('click', (e) => {
+  if(e.target.classList.contains('copy-btn')){
+    const sku = e.target.getAttribute('data-sku');
+    navigator.clipboard.writeText(sku).then(() => {
+      e.target.textContent = 'Copied';
+      e.target.classList.add('copied');
+      setTimeout(() => {
+        e.target.textContent = 'Copy';
+        e.target.classList.remove('copied');
+      }, 1200);
+    });
+  }
+});
+
+function copyAllBulk(){
+  const groups = buildBulkSkus();
+  if(!groups.length){
+    bulkStatus.textContent = 'Fill start SKU no., code, and at least one color line.';
+    return;
+  }
+  const all = groups.flatMap(g => g.skus).join('\n');
+  navigator.clipboard.writeText(all).then(() => {
+    bulkStatus.textContent = 'All collection SKUs copied to clipboard.';
+    setTimeout(() => { bulkStatus.textContent = ''; }, 2000);
+  });
+}
+
+document.getElementById('bulkCopyAllBtn').addEventListener('click', copyAllBulk);
+
+setupEnterFlow([bulkNumEl, bulkBdEl, bulkCodeEl, bulkColorsEl], generateBulk);
+</script>
+</body>
+</html>
